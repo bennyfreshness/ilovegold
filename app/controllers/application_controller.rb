@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     gold   = 'no gold'
     result = JSON.parse(open('http://store.apple.com/us/retail/availabilitySearch?parts.0=ME307LL%2FA&zip=92101').read)
     result['body']['stores'].each do |s|
-      if s['partsAvailability']['ME307LL/A']['pickupDisplay'] == 'unavailable'
+      if s['partsAvailability']['ME307LL/A']['pickupDisplay'] != 'unavailable'
         gold = 'give me the gold: ' + s['storeDisplayName'] + ' ' + s['phoneNumber']
         Rails.logger.debug "\n\n #{gold} \n\n"
         GoldMailer.gold(gold).deliver
