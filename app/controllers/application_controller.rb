@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     result['body']['stores'][0..4].each do |s|
       if s['partsAvailability']['ME307LL/A']['pickupDisplay'] != 'unavailable'
         gold = 'give me the gold: ' + s['storeDisplayName'] + ' ' + s['phoneNumber']
-        GoldMailer.gold(gold).deliver
+        # GoldMailer.gold(gold).deliver
       end
     end
     render text: gold
